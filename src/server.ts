@@ -1,10 +1,14 @@
+import "dotenv/config"
 import fastify from 'fastify'
+import { openaiRoutes } from './routes/openai.route'
 
 const server = fastify()
 
 server.get('/ping', async (request, reply) => {
-  return 'pongggg\n'
+  return 'pong\n'
 })
+
+server.register(openaiRoutes)
 
 server.listen({ port: 3333, host: "localhost" }, (err, address) => {
   if (err) {
